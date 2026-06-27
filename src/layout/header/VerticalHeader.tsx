@@ -9,7 +9,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { styled } from "@mui/material/styles";
 import type { Theme } from "@mui/material/styles";
 
-import { IconMenu2 } from "@tabler/icons-react";
+import { IconMenu2, IconMoon, IconSun } from "@tabler/icons-react";
 
 import { CustomizerContext } from "../../context/customizerContext.ts";
 import config from "../../context/config.ts";
@@ -38,7 +38,7 @@ const VerticalHeader = () => {
     throw new Error("VerticalHeader must be used inside CustomizerContextProvider");
   }
 
-  const { setIsCollapse, isCollapse } = customizer;
+  const { activeMode, setActiveMode, setIsCollapse, isCollapse } = customizer;
 
   return (
     <AppBarStyled
@@ -66,6 +66,13 @@ const VerticalHeader = () => {
         <Box flexGrow={1} />
 
         <Stack direction="row" spacing={1} alignItems="center">
+          <IconButton size="large" color="inherit">
+            {activeMode === "light" ? (
+              <IconMoon size="21" stroke="1.5" onClick={() => setActiveMode("dark")} />
+            ) : (
+              <IconSun size="21" stroke="1.5" onClick={() => setActiveMode("light")} />
+            )}
+          </IconButton>
           <Notifications />
           <Profile />
         </Stack>

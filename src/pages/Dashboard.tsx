@@ -2,7 +2,7 @@ export default function Dashboard() {
   return (
     <>
       <main>
-        <div>테스트</div>
+        <div>대시보드</div>
       </main>
     </>
   );

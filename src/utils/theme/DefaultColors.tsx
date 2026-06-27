@@ -1,5 +1,4 @@
 const baselightTheme = {
-  direction: "ltr",
   palette: {
     primary: {
       main: "#5D87FF",

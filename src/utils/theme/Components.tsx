@@ -344,26 +344,11 @@ const components = (theme: Theme): Components<Theme> => {
         },
       },
     },
-    MuiGridItem: {
-      styleOverrides: {
-        root: {
-          paddingTop: "30px",
-          paddingLeft: "30px !important",
-        },
-      },
-    },
     MuiLinearProgress: {
       styleOverrides: {
         root: {
           backgroundColor: theme.palette.grey[200],
           borderRadius: "6px",
-        },
-      },
-    },
-    MuiTimelineConnector: {
-      styleOverrides: {
-        root: {
-          backgroundColor: theme.palette.divider,
         },
       },
     },
@@ -427,9 +412,6 @@ const components = (theme: Theme): Components<Theme> => {
         },
         outlinedInfo: {
           borderColor: theme.palette.info.main,
-          color: theme.palette.info.main,
-        },
-        successIcon: {
           color: theme.palette.info.main,
         },
       },

@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import { IconBellRinging } from "@tabler/icons-react";
 
 import * as dropdownData from "./data.ts";
-import Scrollbar from "../../components/custom/CustomScrollbar.tsx";
+import Scrollbar from "../../components/common/CustomScrollbar.tsx";
 
 const Notifications = () => {
   const [anchorEl2, setAnchorEl2] = useState<null | HTMLElement>(null);

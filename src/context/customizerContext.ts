@@ -1,17 +1,11 @@
 import { createContext } from "react";
 
 export interface CustomizerContextState {
-  activeDir: string;
-  setActiveDir: (dir: string) => void;
-
   activeMode: string;
   setActiveMode: (mode: string) => void;
 
   activeTheme: string;
   setActiveTheme: (theme: string) => void;
-
-  activeLayout: string;
-  setActiveLayout: (layout: string) => void;
 
   isCardShadow: boolean;
   setIsCardShadow: (shadow: boolean) => void;
@@ -24,9 +18,6 @@ export interface CustomizerContextState {
 
   isCollapse: string;
   setIsCollapse: (collapse: string) => void;
-
-  isLanguage: string;
-  setIsLanguage: (language: string) => void;
 
   isSidebarHover: boolean;
   setIsSidebarHover: (isHover: boolean) => void;

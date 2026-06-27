@@ -8,6 +8,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import { CustomizerContext } from "../context/customizerContext";
 import Sidebar from "./sidebar/Sidebar";
 import VerticalHeader from "./header/VerticalHeader";
+import Customizer from "./Customizer.tsx";
 
 const MainWrapper = styled("div")({
   display: "flex",
@@ -28,11 +29,11 @@ const PageWrapper = styled(Box)({
 /**
  * 관리자 대시보드 공통 레이아웃
  */
-const DashboardLayout = () => {
+const Layout = () => {
   const customizer = useContext(CustomizerContext);
 
   if (!customizer) {
-    throw new Error("DashboardLayout must be used inside CustomizerContextProvider");
+    throw new Error("Layout must be used inside CustomizerContextProvider");
   }
 
   const { isLayout, isCollapse } = customizer;
@@ -66,9 +67,10 @@ const DashboardLayout = () => {
             <Outlet />
           </Box>
         </Container>
+        <Customizer />
       </PageWrapper>
     </MainWrapper>
   );
 };
 
-export default DashboardLayout;
+export default Layout;

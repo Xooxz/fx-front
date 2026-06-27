@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import { useTheme } from "@mui/material/styles";
 
-import Scrollbar from "../../components/custom/CustomScrollbar.tsx";
+import Scrollbar from "../../components/common/CustomScrollbar.tsx";
 import { CustomizerContext } from "../../context/customizerContext.ts";
 import config from "../../context/config.ts";
 import SidebarItems from "./SidebarItems.tsx";

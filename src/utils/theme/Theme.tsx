@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { createTheme, type ThemeOptions } from "@mui/material/styles";
 
 import { CustomizerContext } from "../../context/customizerContext";
@@ -11,7 +11,6 @@ import { darkshadows, shadows } from "./Shadows";
 import typography from "./Typography";
 
 type BuildThemeConfig = {
-  direction: "ltr" | "rtl";
   theme: string;
   activeMode: "light" | "dark";
   isBorderRadius: number;
@@ -34,7 +33,6 @@ export const BuildTheme = (config: BuildThemeConfig) => {
     },
     shadows: defaultShadow,
     typography,
-    direction: config.direction,
   };
 
   let theme = createTheme(_.merge({}, baseMode, defaultTheme, themeSelect));
@@ -53,18 +51,11 @@ export const ThemeSettings = () => {
     throw new Error("ThemeSettings must be used inside CustomizerContextProvider");
   }
 
-  const { activeDir, activeTheme, activeMode, isBorderRadius } = customizer;
+  const { activeTheme, activeMode, isBorderRadius } = customizer;
 
-  const theme = BuildTheme({
-    direction: activeDir as "ltr" | "rtl",
+  return BuildTheme({
     theme: activeTheme,
     activeMode: activeMode as "light" | "dark",
     isBorderRadius,
   });
-
-  useEffect(() => {
-    document.dir = activeDir;
-  }, [activeDir]);
-
-  return theme;
 };
