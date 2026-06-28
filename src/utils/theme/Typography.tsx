@@ -49,11 +49,11 @@ const typography = {
   },
   subtitle1: {
     fontSize: "0.75rem",
-    fontWeight: 400,
+    fontWeight: 600,
   },
   subtitle2: {
     fontSize: "0.75rem",
-    fontWeight: 400,
+    fontWeight: 500,
   },
 };
 

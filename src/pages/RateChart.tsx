@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 
-import Chip from "@mui/material/Chip";
 import { createColumnHelper, type ColumnDef } from "@tanstack/react-table";
 
 import { connectRateStream, type RateEvent } from "../api/rateStreamApi";
 import PageContainer from "../components/common/PageContainer";
 import TableBasic from "../components/table/TableBasic";
+import { Stack } from "@mui/system";
+import { Typography } from "@mui/material";
 
 type RateRow = {
   symbol: string;
@@ -14,7 +15,6 @@ type RateRow = {
   change: number;
   changeRate: number;
   updatedAt: string;
-  status: "LIVE" | "STALE";
 };
 
 const columnHelper = createColumnHelper<RateRow>();
@@ -23,6 +23,9 @@ const columns = [
   columnHelper.accessor("symbol", {
     header: "통화",
     size: 140,
+    cell: (info) => (
+      <Typography variant="subtitle1">{info.getValue().replace("-", "/")}</Typography>
+    ),
   }),
   columnHelper.accessor("price", {
     header: "현재 환율",
@@ -38,37 +41,46 @@ const columns = [
       return value === null ? "-" : value.toLocaleString();
     },
   }),
-  columnHelper.accessor("change", {
-    header: "변동",
-    size: 140,
-    cell: (info) => {
-      const value = info.getValue();
-
-      if (value > 0) return `▲ ${value.toFixed(2)}`;
-      if (value < 0) return `▼ ${Math.abs(value).toFixed(2)}`;
-
-      return "-";
-    },
-  }),
   columnHelper.accessor("changeRate", {
     header: "변동률",
-    size: 140,
-    cell: (info) => `${info.getValue().toFixed(2)}%`,
+    size: 160,
+    cell: ({ row, getValue }) => {
+      const { change } = row.original;
+      const changeRate = getValue();
+
+      const isUp = change > 0;
+      const isDown = change < 0;
+
+      return (
+        <Stack spacing={0}>
+          <Typography
+            variant="caption"
+            sx={{
+              color: isUp ? "rate.up" : isDown ? "rate.down" : "text.secondary",
+            }}
+          >
+            {changeRate > 0 && "+"}
+            {changeRate.toFixed(2)}%
+          </Typography>
+
+          <Typography
+            variant="body2"
+            fontWeight={600}
+            sx={{
+              color: isUp ? "rate.up" : isDown ? "rate.down" : "text.primary",
+            }}
+          >
+            {isUp && "+ "}
+            {isDown && "- "}
+            {Math.abs(change).toFixed(2)}
+          </Typography>
+        </Stack>
+      );
+    },
   }),
   columnHelper.accessor("updatedAt", {
     header: "갱신시간",
     size: 140,
-  }),
-  columnHelper.accessor("status", {
-    header: "상태",
-    size: 120,
-    cell: (info) => (
-      <Chip
-        size="small"
-        label={info.getValue()}
-        color={info.getValue() === "LIVE" ? "success" : "warning"}
-      />
-    ),
   }),
 ] as ColumnDef<RateRow, unknown>[];
 
@@ -77,15 +89,25 @@ const RateChart = () => {
 
   useEffect(() => {
     const eventSource = connectRateStream((events: RateEvent[]) => {
-      const rows: RateRow[] = events.map((event) => ({
-        symbol: event.symbol,
-        price: event.price,
-        previousPrice: event.previousPrice,
-        change: event.change,
-        changeRate: event.changeRate,
-        updatedAt: new Date(event.createdAt).toLocaleTimeString(),
-        status: "LIVE",
-      }));
+      const rows: RateRow[] = events.map((event) => {
+        const date = new Date(event.updatedAt);
+
+        return {
+          symbol: event.symbol,
+          price: event.price,
+          previousPrice: event.previousPrice,
+          change: event.change,
+          changeRate: event.changeRate,
+          updatedAt:
+            `${date.getFullYear()}-` +
+            `${String(date.getMonth() + 1).padStart(2, "0")}-` +
+            `${String(date.getDate()).padStart(2, "0")} ` +
+            `${String(date.getHours()).padStart(2, "0")}:` +
+            `${String(date.getMinutes()).padStart(2, "0")}:` +
+            `${String(date.getSeconds()).padStart(2, "0")}.` +
+            `${String(date.getMilliseconds()).padStart(3, "0")}`,
+        };
+      });
 
       setRates(rows);
     });

@@ -4,7 +4,7 @@ export type RateEvent = {
   previousPrice: number | null;
   change: number;
   changeRate: number;
-  createdAt: string;
+  updatedAt: string;
 };
 
 export const connectRateStream = (

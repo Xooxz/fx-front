@@ -57,6 +57,11 @@ const baselightTheme = {
       hover: "#f6f9fc",
     },
     divider: "#e5eaef",
+    rate: {
+      up: "#E53935",
+      down: "#1565C0",
+      neutral: "#757575",
+    },
   },
 };
 
@@ -124,6 +129,11 @@ const baseDarkTheme = {
       default: "#171c23",
       dark: "#171c23",
       paper: "#171c23",
+    },
+    rate: {
+      up: "#E53935",
+      down: "#1565C0",
+      neutral: "#757575",
     },
   },
 };
