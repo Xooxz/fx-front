@@ -5,7 +5,7 @@ import { styled } from "@mui/material/styles";
 const CustomTextField = styled((props: TextFieldProps) => <TextField {...props} />)(
   ({ theme }) => ({
     "& .MuiOutlinedInput-root": {
-      backgroundColor: "#ffffff",
+      backgroundColor: theme.palette.primary.light,
 
       "&:hover .MuiOutlinedInput-notchedOutline": {
         borderColor: theme.palette.primary.main,

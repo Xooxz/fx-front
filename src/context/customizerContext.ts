@@ -7,12 +7,6 @@ export interface CustomizerContextState {
   activeTheme: string;
   setActiveTheme: (theme: string) => void;
 
-  isCardShadow: boolean;
-  setIsCardShadow: (shadow: boolean) => void;
-
-  isLayout: string;
-  setIsLayout: (layout: string) => void;
-
   isBorderRadius: number;
   setIsBorderRadius: (radius: number) => void;
 

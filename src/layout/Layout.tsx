@@ -36,7 +36,7 @@ const Layout = () => {
     throw new Error("Layout must be used inside CustomizerContextProvider");
   }
 
-  const { isLayout, isCollapse } = customizer;
+  const { isCollapse } = customizer;
   const theme = useTheme();
 
   return (
@@ -60,7 +60,7 @@ const Layout = () => {
           sx={{
             pt: "24px",
             px: "24px",
-            maxWidth: isLayout === "boxed" ? "1200px" : "100%",
+            maxWidth: "100%",
           }}
         >
           <Box sx={{ minHeight: "calc(100vh - 170px)" }}>

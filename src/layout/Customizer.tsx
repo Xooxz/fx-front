@@ -7,19 +7,11 @@ import Fab from "@mui/material/Fab";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import Slider from "@mui/material/Slider";
-import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 
-import {
-  IconAdjustmentsHorizontal,
-  IconCheck,
-  IconMaximize,
-  IconShadow,
-  IconSquare,
-  IconX,
-} from "@tabler/icons-react";
+import { IconAdjustmentsHorizontal, IconCheck, IconX } from "@tabler/icons-react";
 
 import Scrollbar from "../components/common/CustomScrollbar";
 import { CustomizerContext } from "../context/customizerContext";
@@ -66,16 +58,7 @@ const Customizer = () => {
     throw new Error("Customizer must be used inside CustomizerContextProvider");
   }
 
-  const {
-    activeTheme,
-    isLayout,
-    isCardShadow,
-    setIsCardShadow,
-    setIsLayout,
-    isBorderRadius,
-    setIsBorderRadius,
-    setActiveTheme,
-  } = customizer;
+  const { activeTheme, isBorderRadius, setIsBorderRadius, setActiveTheme } = customizer;
 
   const handleThemeColorChange = (themeName: string) => {
     document.body.setAttribute("data-color-theme", themeName);
@@ -146,42 +129,6 @@ const Customizer = () => {
                 </Grid>
               ))}
             </Grid>
-
-            <Box pt={4} />
-
-            <Typography variant="h6" gutterBottom>
-              Container Option
-            </Typography>
-
-            <Stack direction="row" gap={2} my={2}>
-              <StyledBox onClick={() => setIsLayout("boxed")} display="flex" gap={1}>
-                <IconSquare color={isLayout === "boxed" ? "currentColor" : undefined} />
-                Boxed
-              </StyledBox>
-
-              <StyledBox onClick={() => setIsLayout("full")} display="flex" gap={1}>
-                <IconMaximize color={isLayout === "full" ? "currentColor" : undefined} />
-                Full
-              </StyledBox>
-            </Stack>
-
-            <Box pt={4} />
-
-            <Typography variant="h6" gutterBottom>
-              Card With
-            </Typography>
-
-            <Stack direction="row" gap={2} my={2}>
-              <StyledBox onClick={() => setIsCardShadow(false)} display="flex" gap={1}>
-                <IconSquare color={!isCardShadow ? "currentColor" : undefined} />
-                Border
-              </StyledBox>
-
-              <StyledBox onClick={() => setIsCardShadow(true)} display="flex" gap={1}>
-                <IconShadow color={isCardShadow ? "currentColor" : undefined} />
-                Shadow
-              </StyledBox>
-            </Stack>
 
             <Box pt={4} />
 

@@ -70,37 +70,8 @@ const TableSorting = <TData extends object>({ data, columns }: TableSortingProps
     },
   });
 
-  const handleDownload = () => {
-    const headers = table
-      .getAllColumns()
-      .filter((column) => column.getIsVisible())
-      .map((column) => String(column.columnDef.header ?? ""));
-
-    const rows = table
-      .getRowModel()
-      .rows.map((row) => row.getVisibleCells().map((cell) => String(cell.getValue() ?? "")));
-
-    const csvContent = [headers.join(","), ...rows.map((row) => row.join(","))].join("\n");
-
-    const blob = new Blob([csvContent], {
-      type: "text/csv;charset=utf-8;",
-    });
-
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-
-    link.href = url;
-    link.setAttribute("download", "table-data.csv");
-
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    URL.revokeObjectURL(url);
-  };
-
   return (
-    <TableCard onDownload={handleDownload} table={table}>
+    <TableCard table={table}>
       <Grid container spacing={3}>
         <Grid size={12}>
           <Box>

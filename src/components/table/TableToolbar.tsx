@@ -8,7 +8,6 @@ interface Props<TData extends object> {
   table: Table<TData>;
   searchValue: string;
   setSearchValue: (value: string) => void;
-  onDownload?: () => void;
 }
 
 /**
@@ -20,7 +19,7 @@ const TableToolbar = <TData extends object>({
   setSearchValue,
 }: Props<TData>) => {
   return (
-    <Stack direction="row" spacing={2} px={1} pt={1} pb={4} alignItems="center">
+    <Stack direction="row" spacing={2} px={1} pt={1} pb={5} alignItems="center">
       {/* 검색어 입력 */}
       <ColumnSearchInput table={table} value={searchValue} onChange={setSearchValue} />
     </Stack>
