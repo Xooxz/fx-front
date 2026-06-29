@@ -22,15 +22,16 @@ import {
 
 import TableCard from "./TableCard";
 
-type TableSortingProps<TData extends object> = {
+type TableBasicProps<TData extends object> = {
   data: TData[];
   columns: ColumnDef<TData, unknown>[];
+  error?: string | null;
 };
 
 /**
- * 정렬/필터를 지원하는 공통 테이블
+ * 정렬만 지원하는 공통 테이블
  */
-const TableBasic = <TData extends object>({ data, columns }: TableSortingProps<TData>) => {
+const TableBasic = <TData extends object>({ data, columns, error }: TableBasicProps<TData>) => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   // eslint-disable-next-line react-hooks/incompatible-library
@@ -97,25 +98,56 @@ const TableBasic = <TData extends object>({ data, columns }: TableSortingProps<T
                 </TableHead>
 
                 <TableBody>
-                  {table.getRowModel().rows.map((row) => (
-                    <TableRow key={row.id}>
-                      {row.getVisibleCells().map((cell) => (
-                        <TableCell
-                          key={cell.id}
+                  {error ? (
+                    <TableRow>
+                      <TableCell colSpan={table.getAllColumns().length}>
+                        <Box
                           sx={{
-                            width: cell.column.getSize(),
-                            minWidth: cell.column.getSize(),
-                            maxWidth: cell.column.getSize(),
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            whiteSpace: "nowrap",
+                            height: 220,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexDirection: "column",
+                            gap: 1,
                           }}
                         >
-                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                        </TableCell>
-                      ))}
+                          <Typography variant="h6" color="error">
+                            데이터를 불러오지 못했습니다.
+                          </Typography>
+
+                          <Typography variant="body2" color="text.secondary">
+                            {error}
+                          </Typography>
+                        </Box>
+                      </TableCell>
                     </TableRow>
-                  ))}
+                  ) : table.getRowModel().rows.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={table.getAllColumns().length}>
+                        <Box
+                          sx={{
+                            height: 220,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            color: "text.secondary",
+                          }}
+                        >
+                          조회된 데이터가 없습니다.
+                        </Box>
+                      </TableCell>
+                    </TableRow>
+                  ) : (
+                    table.getRowModel().rows.map((row) => (
+                      <TableRow key={row.id}>
+                        {row.getVisibleCells().map((cell) => (
+                          <TableCell key={cell.id}>
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    ))
+                  )}
                 </TableBody>
               </Table>
             </TableContainer>

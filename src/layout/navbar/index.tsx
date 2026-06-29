@@ -11,6 +11,7 @@ import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import type { IconProps } from "@tabler/icons-react";
 
 import { CustomizerContext } from "../../context/customizerContext.ts";
+import config from "../../context/config";
 import NavItem from "./NavItem.tsx";
 
 type NavGroupProps = {
@@ -55,7 +56,6 @@ export default function NavCollapse({
     throw new Error("NavCollapse must be used inside CustomizerContextProvider");
   }
 
-  const { isBorderRadius } = customizer;
   const theme = useTheme<Theme>();
   const { pathname } = useLocation();
 
@@ -119,7 +119,7 @@ export default function NavCollapse({
                 ? theme.palette.primary.main
                 : theme.palette.text.secondary,
 
-          borderRadius: `${isBorderRadius}px`,
+          borderRadius: `${config.isBorderRadius}px`,
 
           "&:hover": {
             backgroundColor:

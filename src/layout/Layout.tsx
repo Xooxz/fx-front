@@ -8,7 +8,6 @@ import { styled, useTheme } from "@mui/material/styles";
 import { CustomizerContext } from "../context/customizerContext";
 import Sidebar from "./sidebar/Sidebar";
 import VerticalHeader from "./header/VerticalHeader";
-import Customizer from "./Customizer.tsx";
 
 const MainWrapper = styled("div")({
   display: "flex",
@@ -67,7 +66,6 @@ const Layout = () => {
             <Outlet />
           </Box>
         </Container>
-        <Customizer />
       </PageWrapper>
     </MainWrapper>
   );

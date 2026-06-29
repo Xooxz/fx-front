@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { createTheme, type ThemeOptions } from "@mui/material/styles";
 
 import { CustomizerContext } from "../../context/customizerContext";
+import config from "../../context/config";
 import components from "./Components";
 import { baseDarkTheme, baselightTheme } from "./DefaultColors";
 import { DarkThemeColors } from "./DarkThemeColors";
@@ -51,11 +52,11 @@ export const ThemeSettings = () => {
     throw new Error("ThemeSettings must be used inside CustomizerContextProvider");
   }
 
-  const { activeTheme, activeMode, isBorderRadius } = customizer;
+  const { activeTheme, activeMode } = customizer;
 
   return BuildTheme({
     theme: activeTheme,
     activeMode: activeMode as "light" | "dark",
-    isBorderRadius,
+    isBorderRadius: config.isBorderRadius,
   });
 };

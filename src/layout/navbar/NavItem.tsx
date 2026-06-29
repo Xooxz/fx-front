@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import { styled, useTheme } from "@mui/material/styles";
 
 import { CustomizerContext } from "../../context/customizerContext.ts";
+import config from "../../context/config";
 
 type NavGroup = {
   id?: string;
@@ -51,7 +52,6 @@ export default function NavItem({ item, level = 1, pathDirect, hideMenu = false,
     throw new Error("NavItem must be used inside CustomizerContextProvider");
   }
 
-  const { isBorderRadius } = customizer;
   const Icon = item.icon;
 
   const itemIcon = Icon ? <Icon stroke={1.5} size={level > 1 ? "1rem" : "1.3rem"} /> : null;
@@ -71,7 +71,7 @@ export default function NavItem({ item, level = 1, pathDirect, hideMenu = false,
         selected={pathDirect === item.href}
         onClick={handleItemClick}
         sx={{
-          borderRadius: `${isBorderRadius}px`,
+          borderRadius: `${config.isBorderRadius}px`,
           backgroundColor: level > 1 ? "transparent !important" : "inherit",
           color:
             level > 1 && pathDirect === item.href

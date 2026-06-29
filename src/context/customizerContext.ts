@@ -7,9 +7,6 @@ export interface CustomizerContextState {
   activeTheme: string;
   setActiveTheme: (theme: string) => void;
 
-  isBorderRadius: number;
-  setIsBorderRadius: (radius: number) => void;
-
   isCollapse: string;
   setIsCollapse: (collapse: string) => void;
 

@@ -37,7 +37,6 @@ export const CustomizerContextProvider = ({ children }: Props) => {
     getStoredValue("activeTheme", config.activeTheme)
   );
 
-  const [isBorderRadius, setIsBorderRadius] = useState(config.isBorderRadius);
   const [isCollapse, setIsCollapse] = useState(config.isCollapse);
 
   const [isSidebarHover, setIsSidebarHover] = useState(false);
@@ -73,9 +72,6 @@ export const CustomizerContextProvider = ({ children }: Props) => {
 
         activeTheme,
         setActiveTheme,
-
-        isBorderRadius,
-        setIsBorderRadius,
 
         isCollapse,
         setIsCollapse,

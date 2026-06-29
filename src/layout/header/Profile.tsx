@@ -30,7 +30,7 @@ const Profile = () => {
         onClick={handleClick2}
       >
         <Avatar
-          src="/images/profile/user-1.jpg"
+          src="/images/profile/profile.svg"
           alt="ProfileImg"
           sx={{
             width: 35,
@@ -64,7 +64,7 @@ const Profile = () => {
 
         <Stack direction="row" py={3} spacing={2} alignItems="center">
           <Avatar
-            src="/images/profile/user-1.jpg"
+            src="/images/profile/profile.svg"
             alt="ProfileImg"
             sx={{
               width: 95,
