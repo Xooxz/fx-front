@@ -60,7 +60,7 @@ const TableBasic = <TData extends object>({ data, columns }: TableSortingProps<T
         <Grid size={12}>
           <Box>
             <TableContainer>
-              <Table sx={{ whiteSpace: "nowrap" }}>
+              <Table sx={{ wtableLayout: "fixed", width: "100%" }}>
                 <TableHead>
                   {table.getHeaderGroups().map((headerGroup) => (
                     <TableRow key={headerGroup.id}>
@@ -100,10 +100,18 @@ const TableBasic = <TData extends object>({ data, columns }: TableSortingProps<T
                   {table.getRowModel().rows.map((row) => (
                     <TableRow key={row.id}>
                       {row.getVisibleCells().map((cell) => (
-                        <TableCell key={cell.id}>
-                          <Typography variant="body1">
-                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                          </Typography>
+                        <TableCell
+                          key={cell.id}
+                          sx={{
+                            width: cell.column.getSize(),
+                            minWidth: cell.column.getSize(),
+                            maxWidth: cell.column.getSize(),
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </TableCell>
                       ))}
                     </TableRow>

@@ -29,12 +29,12 @@ const columns = [
   }),
   columnHelper.accessor("price", {
     header: "현재 환율",
-    size: 140,
+    size: 150,
     cell: (info) => info.getValue().toLocaleString(),
   }),
   columnHelper.accessor("previousPrice", {
     header: "이전 환율",
-    size: 140,
+    size: 150,
     cell: (info) => {
       const value = info.getValue();
 
@@ -79,7 +79,7 @@ const columns = [
     },
   }),
   columnHelper.accessor("updatedAt", {
-    header: "갱신시간",
+    header: "갱신 시간",
     size: 140,
   }),
 ] as ColumnDef<RateRow, unknown>[];

@@ -1,6 +1,6 @@
 import { uniqueId } from "lodash";
 import type { ChipProps } from "@mui/material/Chip";
-import { type Icon, IconActivityHeartbeat, IconChartLine, IconLogs } from "@tabler/icons-react";
+import { type Icon, IconActivityHeartbeat, IconChartLine } from "@tabler/icons-react";
 
 import { IconLayoutCollage } from "@tabler/icons-react";
 
@@ -49,13 +49,6 @@ const MenuItems: MenuItem[] = [
   {
     navLabel: true,
     subheader: "Monitoring",
-  },
-  {
-    id: uniqueId(),
-    title: "이벤트 로그",
-    icon: IconLogs,
-    href: "/monitoring/events",
-    chipColor: "secondary",
   },
   {
     id: uniqueId(),
