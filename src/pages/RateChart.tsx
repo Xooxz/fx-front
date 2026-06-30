@@ -7,6 +7,7 @@ import PageContainer from "../components/common/PageContainer";
 import TableBasic from "../components/table/TableBasic";
 import { Stack } from "@mui/system";
 import { Typography } from "@mui/material";
+import Box from "@mui/material/Box";
 
 type RateRow = {
   symbol: string;
@@ -23,9 +24,22 @@ const columns = [
   columnHelper.accessor("symbol", {
     header: "통화",
     size: 140,
-    cell: (info) => (
-      <Typography variant="subtitle1">{info.getValue().replace("-", "/")}</Typography>
-    ),
+      cell: (info) => {
+          const [base, quote] = info.getValue().split("-");
+
+          return (
+              <Box>
+                  <Typography component="span" variant="subtitle1" fontWeight={700}>
+                      {base}
+                  </Typography>
+
+                  <Typography component="span" variant="body1" >
+                      {" - "}
+                      {quote}
+                  </Typography>
+              </Box>
+          );
+      },
   }),
   columnHelper.accessor("price", {
     header: "현재 환율",

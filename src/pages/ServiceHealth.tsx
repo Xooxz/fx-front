@@ -44,14 +44,14 @@ const columns = [
     },
   }),
   columnHelper.accessor("responseTime", {
-    header: "응답시간",
+    header: "응답 속도",
     cell: (info) => {
       const value = info.getValue();
       return value === null ? "-" : `${value}ms`;
     },
   }),
   columnHelper.accessor("checkedAt", {
-    header: "확인 시간",
+    header: "응답 시간",
   }),
 ] as ColumnDef<ServiceHealthRow, unknown>[];
 
