@@ -1,7 +1,7 @@
 export type RateEvent = {
   symbol: string;
+  countryName: string;
   price: number;
-  previousPrice: number | null;
   change: number;
   changeRate: number;
   updatedAt: string;
