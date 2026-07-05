@@ -341,6 +341,12 @@ const components = (theme: Theme): Components<Theme> => {
           "&:last-child td": {
             borderBottom: 0,
           },
+          "&.MuiTableRow-hover:hover": {
+            backgroundColor: theme.palette.action.hover,
+          },
+          "&.MuiTableRow-hover:hover td": {
+            backgroundColor: "inherit",
+          },
         },
       },
     },

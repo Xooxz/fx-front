@@ -60,9 +60,7 @@ const columns = [
             </Typography>
           </Typography>
 
-          <Typography variant="body2" color="text.secondary">
-            {countryName}
-          </Typography>
+          <Typography variant="body2">{countryName}</Typography>
         </Box>
       );
     },

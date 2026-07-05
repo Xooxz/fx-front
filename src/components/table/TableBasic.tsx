@@ -139,7 +139,13 @@ const TableBasic = <TData extends object>({ data, columns, error }: TableBasicPr
                     </TableRow>
                   ) : (
                     table.getRowModel().rows.map((row) => (
-                      <TableRow key={row.id}>
+                      <TableRow
+                        key={row.id}
+                        hover
+                        sx={{
+                          cursor: "pointer",
+                        }}
+                      >
                         {row.getVisibleCells().map((cell) => (
                           <TableCell key={cell.id}>
                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
